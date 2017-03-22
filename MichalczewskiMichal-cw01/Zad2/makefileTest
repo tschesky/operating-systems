@@ -1,0 +1,40 @@
+# source files.
+SRC =  	ListTest.c
+SRC2 = listTestDLL.c
+OBJ = staticTest.o
+OBJ2 = sharedTest.o
+OBJ3 = listTestDLL.c
+OUT = staticTest
+OUT2 = sharedTest
+OUT3= listTestDLL
+ 
+# C compiler flags
+CCFLAGS = -std=c99
+SHAREDLIB = -L. -lListShared
+STATICLIB = -L. -lListStatic
+DLLIB = -ldl
+
+# compiler
+CC = gcc
+
+all : $(OUT) $(OUT2) $(OUT3)
+
+$(OUT): $(SRC)
+	$(CC) $(CCFLAGS) $(SRC) -o $(OUT) $(STATICLIB)
+
+$(OUT2): $(SRC)
+	$(CC) $(CCFLAGS) $(SRC) -o $(OUT2) $(SHAREDLIB)
+
+$(OUT3): $(SRC2)
+	$(CC) $(CCFLAGS) $(SRC2) -o $(OUT3) $(DLLIB)
+
+run: all
+	./$(OUT)
+	./$(OUT2)
+	./$(OUT3)
+
+
+
+# gcc -std=c99 ListTest.c -o ListTest -L. -lListShared <------ shared
+# gcc -std=c99 ListTest.c -o ListTest -L. -lListStatic
+

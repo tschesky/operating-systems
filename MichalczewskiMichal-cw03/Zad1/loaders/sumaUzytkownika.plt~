@@ -1,0 +1,10 @@
+set grid
+set term png
+set output "../plots/sumaUzytkownika.png"
+set terminal png size 1024,768
+set title "Suma procesów: czas użytkownika"
+plot '../wyniki/fork.txt' using 1:11 with line title "fork",\
+'../wyniki/vfork.txt' using 1:11 with line title "vfork",\
+'../wyniki/forkClone.txt' using 1:11 with line title "forkClone",\
+'../wyniki/vforkClone.txt' using 1:11 with line title "vforkClone"
+replot

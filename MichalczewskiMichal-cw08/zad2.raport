@@ -1,0 +1,27 @@
+Zad 2 a)
+
+1. wysłanie sygnału do procesu, gdy żaden wątek nie ma zamaskowanego tego sygnału:
+Dla każdego sygnału zostaje wypisana odpowiedznia dla niego informacja po czym program kończy się.
+ 
+2. wysłanie sygnału do procesu, gdy główny wątek programu ma zamaskowany ten sygnał, a wszystkie pozostałe wątki nie:
+Dla SIGUSR1 i SIGTERM program nie reaguje na sygnał, a dla SIGKILL i SIGSTOP działanie domyślne ponieważ nie można ich zamaskować.
+ 
+3. wysłanie sygnału do procesu, gdy wszystkie wątki mają zainstalowaną niestandardową procedurę obsługi przerwania, która wypisuje informację o nadejściu tego sygnału oraz PID i TID danego wątku:
+Dla SIGUSR1 i SIGTERM program wyświetla informację o otrzymaniu sygnału i TID głównego wątku, po czym kontynuuje pracę normalnie.
+Przy SIGKILL i SIGSTOP program zostaje unicestwiony i zatrzymany, ponieważ nie można zmienić obsługi tych sygnałów.
+ 
+4. wysłanie sygnału do wątku z zamaskowanym tym sygnałem:
+Dla SIGUSR1 i SIGTERM program nie reaguje na sygnał, dla SIGKILL i SIGSTOP działanie domyślne ponieważ nie można ich zamaskować.
+ 
+5. wysłanie sygnału do wątku, w którym zmieniona jest procedura obsługi sygnału, jak przedstawiono w punkcie 3
+Dla SIGUSR1 i SIGTERM program wyświetla informację o otrzymanym sygnale oraz o TID procesu, który ten sygnał złapał, a następnie kontynuuje pracę.
+Dla SIGKILL i SIGSTOP działanie domyślne ponieważ nie można zmienić im procedur obsługi.
+
+
+Zad 2 b)
+
+komputer: Samsung RF511
+system operacyjny: Ubuntu 14.04.02
+kernel: 3.16.0-30-generic
+
+Po wygenerowaniu sygnału SIGFPE procedura jego obsługi wykonuje się w nieskończonej pętli, informując o przechwyceniu sygnału nr 8 oraz wypisując TID wątku, w ktorym było wykonane dzielenie przez zero.

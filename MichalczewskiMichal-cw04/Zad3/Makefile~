@@ -1,0 +1,18 @@
+CC = gcc
+CFLAGS = -Wall -g
+LFLAGS =
+OBJS = parent.o child.o
+
+all : $(OBJS)
+
+%.o : %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(LFLAGS) -o $* $@
+
+
+.PHONY : clean
+clean :
+	@rm -f $(OBJS)
+.PHONY : clean-all
+clean-all :
+	@rm -f $(OBJS) $(OBJS:.o=)

@@ -1,0 +1,30 @@
+# source files.
+SRC =  	List.c
+OBJ = $(SRC:.c=.o)
+OBJ2 = sharedList.o
+OUT = libListStatic.a
+OUT2 = libListShared.so
+ 
+# C compiler flags (-g -O2 -Wall)
+CCFLAGS = -ansi -pedantic -std=c99 -W -Wall
+POSITION = -fPIC
+SHARE = -shared
+
+# compiler
+CC = gcc
+ 
+# compile flags
+LDFLAGS = -g
+ 
+.SUFFIXES: .c
+ 
+.c.o:
+	$(CC) $(CCFLAGS) -c $< -o $(OBJ)
+	$(CC) $(POSITION) -c $< -o $(OBJ2)
+	$(CC) $(SHARE) $(POSITION) -o $(OUT2) $(OBJ2)
+ 
+$(OUT): $(OBJ)
+	ar rcs $(OUT) $(OBJ)
+
+clean:
+	rm -f $(OBJ) $(OUT) Makefile.bak
